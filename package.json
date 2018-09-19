@@ -1,0 +1,116 @@
+{
+  "name": "vscode-markdown-todo",
+  "displayName": "Markdown Todo",
+  "description": "Manage todo lists inside markdown files with ease.",
+  "icon": "resources/logo-128x128.png",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "out/src/extension.js",
+  "publisher": "fabiospampinato",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Markdown Todo - Configuration",
+      "properties": {
+        "markdown.todo.symbols.bullet": {
+          "type": "string",
+          "enum": [
+            "*",
+            "-",
+            "+"
+          ],
+          "description": "Todo bullet symbol",
+          "default": "-"
+        },
+        "markdown.todo.symbols.done": {
+          "type": "string",
+          "enum": [
+            "x",
+            "X"
+          ],
+          "description": "Todo done symbol",
+          "default": "x"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "markdown.todo.toggleTodo",
+        "title": "Markdown Todo: Toggle Todo"
+      },
+      {
+        "command": "markdown.todo.toggleDone",
+        "title": "Markdown Todo: Toggle Done"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "markdown.todo.toggleTodo",
+        "key": "Ctrl+Enter",
+        "mac": "Cmd+Enter",
+        "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
+        "command": "markdown.todo.toggleDone",
+        "key": "Alt+d",
+        "when": "editorTextFocus && editorLangId == markdown"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "markdown.todo.toggleTodo",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown.todo.toggleDone",
+          "when": "editorLangId == markdown"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "publish": "vsce publish && npm publish",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "bugs": {
+    "url": "https://github.com/fabiospampinato/vscode-markdown-todo/issues"
+  },
+  "author": {
+    "name": "Fabio Spampinato",
+    "email": "spampinabio@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabiospampinato/vscode-markdown-todo.git"
+  },
+  "engines": {
+    "vscode": "^1.15.0"
+  },
+  "keywords": [
+    "vscode",
+    "vsc",
+    "extension",
+    "markdown",
+    "todo"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "diff": "^3.5.0",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.40",
+    "tslint": "^4.4.2",
+    "typescript": "^3.0.3",
+    "vscode": "^1.1.21"
+  }
+}
