@@ -48,6 +48,12 @@ It adds 2 shortcuts when editing a `Markdown` file:
 - **[Todo+](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus)**: Manage todo lists with ease. Powerful, easy to use and customizable.
 - **[Noty](https://github.com/fabiospampinato/noty)**: Autosaving sticky note with support for multiple notes without needing multiple windows.
 
+## Contributing
+
+If you found a problem, or have a feature request, please open an [issue](https://github.com/fabiospampinato/vscode-markdown-todo/issues) about it.
+
+If you want to make a pull request you can debug the extension using [Debug Launcher](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-debug-launcher).
+
 ## License
 
 MIT © Fabio Spampinato
