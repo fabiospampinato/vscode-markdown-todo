@@ -111,7 +111,6 @@
   "devDependencies": {
     "@types/node": "^6.0.40",
     "ts-loader": "^5.2.1",
-    "tslint": "^4.4.2",
     "typescript": "^3.0.3",
     "vscode": "^1.1.21",
     "webpack": "^4.20.2",
