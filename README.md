@@ -1,7 +1,7 @@
 # Markdown Todo
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-markdown-todo/master/resources/logo.png" width="128" alt="Logo">
+  <img src="https://raw.githubusercontent.com/fabiospampinato/vscode-markdown-todo/master/resources/logo.png" width="128" alt="Logo">
 </p>
 
 Manage todo lists inside markdown files with ease.
