@@ -1,3 +1,6 @@
+### Version 1.0.4
+- Readme: added a link to Notable
+
 ### Version 1.0.3
 - Readme: using hi-res logo
 
