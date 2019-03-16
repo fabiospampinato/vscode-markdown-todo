@@ -54,6 +54,11 @@
         "when": "editorTextFocus && editorLangId == markdown"
       },
       {
+        "command": "markdown.todo.toggleTodo",
+        "key": "Alt+Enter",
+        "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
         "command": "markdown.todo.toggleDone",
         "key": "Alt+d",
         "when": "editorTextFocus && editorLangId == markdown"
