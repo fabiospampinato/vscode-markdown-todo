@@ -1,3 +1,6 @@
+### Version 1.1.0
+- Added Alt+Enter as an alias to Cmd/Ctrl+Enter
+
 ### Version 1.0.4
 - Readme: added a link to Notable
 
