@@ -44,6 +44,10 @@
       {
         "command": "markdown.todo.toggleDone",
         "title": "Markdown Todo: Toggle Done"
+      },
+      {
+        "command": "markdown.todo.toggleTodoBullet",
+        "title": "Markdown Todo: Toggle Todo and Bullet"
       }
     ],
     "keybindings": [
@@ -62,6 +66,11 @@
         "command": "markdown.todo.toggleDone",
         "key": "Alt+d",
         "when": "editorTextFocus && editorLangId == markdown"
+      },
+      {
+        "command": "markdown.todo.toggleTodoBullet",
+        "key": "Alt+t",
+        "when": "editorTextFocus && editorLangId == markdown"
       }
     ],
     "menus": {
@@ -72,6 +81,10 @@
         },
         {
           "command": "markdown.todo.toggleDone",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown.todo.toggleTodoBullet",
           "when": "editorLangId == markdown"
         }
       ]

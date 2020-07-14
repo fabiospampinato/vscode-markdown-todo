@@ -71,6 +71,19 @@ function toggleDone () {
 
 }
 
+function toggleTodoBullet () {
+
+  const {bullet} = Consts.symbols,
+        {line, todoBox, todoDone} = Consts.regexes;
+
+  toggleRules (
+    [todoBox, `$1${bullet} $3`],
+    [todoDone, `$1${bullet} [ ] $3`],
+    [line, `$1${bullet} [ ] $3`]
+  );
+
+}
+
 /* EXPORT */
 
-export {toggleTodo, toggleDone};
+export {toggleTodo, toggleDone, toggleTodoBullet};
