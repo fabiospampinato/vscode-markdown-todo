@@ -1,3 +1,8 @@
+### Version 1.1.1
+- Update .github/FUNDING.yml
+- Deleted repo-level github funding.yml
+- Added a dialog announcing the fundraising
+
 ### Version 1.1.0
 - Added Alt+Enter as an alias to Cmd/Ctrl+Enter
 
