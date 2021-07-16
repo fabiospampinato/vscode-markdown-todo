@@ -112,7 +112,8 @@
   "dependencies": {
     "@types/node": "^10.12.8",
     "diff": "^3.5.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "vscode-beggar": "^1.0.0"
   },
   "devDependencies": {
     "ts-loader": "^5.2.1",
