@@ -22,7 +22,7 @@ const Consts = {
       },
       regexes: {
         line: /^(\s*)([*+-]?\s*)(.*)$/,
-        todo: new RegExp(`^(\\s*)([*+-]\\s+\\[${bullet}\\]\\s*)(.*)$`),
+        todo: new RegExp(`^(\\s*)([*+-]\\s+\\[${done}\\]\\s*)(.*)$`),
         todoBox: /^(\s*)([*+-]\s+\[ \]\s*)(.*)$/,
         todoDone: new RegExp(`^(\\s*)([*+-]\\s+\\[[${done}]\\]\\s*)(.*)$`)
       }
