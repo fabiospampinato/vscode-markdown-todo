@@ -10,17 +10,21 @@ const Consts = {
 
   get () {
 
+    const bullet = Config.getKey ( 'symbols.bullet' )
+    
+    const done = Config.getKey ( 'symbols.done' )
+
     return {
       languageId: 'markdown',
       symbols: {
-        bullet: Config.getKey ( 'symbols.bullet' ),
-        done: Config.getKey ( 'symbols.done' )
+        bullet,
+        done
       },
       regexes: {
         line: /^(\s*)([*+-]?\s*)(.*)$/,
-        todo: /^(\s*)([*+-]\s+\[[ xX]\]\s*)(.*)$/,
+        todo: new RegExp(`^(\\s*)([*+-]\\s+\\[${bullet}\\]\\s*)(.*)$`),
         todoBox: /^(\s*)([*+-]\s+\[ \]\s*)(.*)$/,
-        todoDone: /^(\s*)([*+-]\s+\[[xX]\]\s*)(.*)$/
+        todoDone: new RegExp(`^(\\s*)([*+-]\\s+\\[[${done}]\\]\\s*)(.*)$`)
       }
     };
 

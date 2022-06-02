@@ -27,10 +27,6 @@
         },
         "markdown.todo.symbols.done": {
           "type": "string",
-          "enum": [
-            "x",
-            "X"
-          ],
           "description": "Todo done symbol",
           "default": "x"
         }
