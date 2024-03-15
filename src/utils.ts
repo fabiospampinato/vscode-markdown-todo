@@ -1,34 +1,33 @@
 
 /* IMPORT */
 
-import * as _ from 'lodash';
-import * as vscode from 'vscode';
-import * as Commands from './commands';
+import {getConfig} from 'vscode-extras';
+import type {Options} from './types';
 
-/* UTILS */
+/* MAIN */
 
-const Utils = {
+const getOptions = (): Options => {
 
-  initCommands ( context: vscode.ExtensionContext ) {
+  const config = getConfig ( 'markdown.todo' );
+  const symbolBullet = isString ( config?.symbols?.todo ) ? config.symbols.todo : '-';
+  const symbolDone = isString ( config?.symbols?.done ) ? config.symbols.done : 'x';
 
-    const {commands} = vscode.extensions.getExtension ( 'fabiospampinato.vscode-markdown-todo' ).packageJSON.contributes;
+  return { symbols: { bullet: symbolBullet, done: symbolDone } };
 
-    commands.forEach ( ({ command, title }) => {
+};
 
-      const commandName = _.last ( command.split ( '.' ) ) as string,
-            handler = Commands[commandName],
-            disposable = vscode.commands.registerCommand ( command, () => handler () );
+const isString = ( value: unknown ): value is string => {
 
-      context.subscriptions.push ( disposable );
+  return typeof value === 'string';
 
-    });
+};
 
-    return Commands;
+const uniq = <T> ( values: T[] ): T[] => {
 
-  }
+  return Array.from ( new Set ( values ) );
 
 };
 
 /* EXPORT */
 
-export default Utils;
+export {getOptions, isString, uniq};

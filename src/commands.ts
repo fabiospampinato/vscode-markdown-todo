@@ -1,25 +1,27 @@
 
 /* IMPORT */
 
-import * as _ from 'lodash';
-import * as vscode from 'vscode';
-import Consts from './consts';
-import Editor from './editor';
+import vscode from 'vscode';
+import {LINE_RE, TODO_BOX_RE, TODO_DONE_RE} from './constants';
+import Edits from './edits';
+import {getOptions, uniq} from './utils';
 
-/* TOGGLE RULES */
+/* MAIN */
 
-async function toggleRules ( ...rules ) {
+const toggleRules = async ( rules: [regex: RegExp, replacement: string][] ): Promise<void> => {
 
   const textEditor = vscode.window.activeTextEditor;
 
-  if ( !Editor.isSupported ( textEditor ) ) return;
+  if ( !textEditor ) return;
+  if ( textEditor.document.languageId !== 'markdown' ) return;
 
-  const textDocument = textEditor.document,
-        lines = _.uniq ( textEditor.selections.map ( selection => textDocument.lineAt ( selection.active.line ) ) );
+  const document = textEditor.document;
+  const linesNr = uniq ( textEditor.selections.map ( selection => selection.active.line ) );
+  const lines = linesNr.map ( lineNr => document.lineAt ( lineNr ) );
 
   if ( !lines.length ) return;
 
-  const edits = [];
+  const edits: vscode.TextEdit[] = [];
 
   lines.forEach ( line => {
 
@@ -29,7 +31,7 @@ async function toggleRules ( ...rules ) {
 
       const nextText = line.text.replace ( regex, replacement );
 
-      edits.push ( ..._.filter ( _.flattenDeep ( lines.map ( line => Editor.edits.makeDiff ( line.text, nextText, line.lineNumber ) ) ) ) );
+      edits.push ( ...lines.map ( line => Edits.makeDiff ( line.text, nextText, line.lineNumber ) ).flat () );
 
       return true;
 
@@ -39,38 +41,36 @@ async function toggleRules ( ...rules ) {
 
   if ( !edits.length ) return;
 
-  await Editor.edits.apply ( textEditor, edits );
+  await Edits.apply ( textEditor, edits );
 
-}
+};
 
-/* COMMANDS */
+const toggleDone = async (): Promise<void> => {
 
-function toggleTodo () {
+  const options = getOptions ();
+  const {bullet, done} = options.symbols;
 
-  const {bullet} = Consts.symbols,
-        {line, todoBox, todoDone} = Consts.regexes;
+  await toggleRules ([
+    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
+    [TODO_BOX_RE, `$1${bullet} [${done}] $3`],
+    [LINE_RE, `$1${bullet} [${done}] $3`]
+  ]);
 
-  toggleRules (
-    [todoBox, '$1$3'],
-    [todoDone, `$1${bullet} [ ] $3`],
-    [line, `$1${bullet} [ ] $3`]
-  );
+};
 
-}
+const toggleTodo = async (): Promise<void> => {
 
-function toggleDone () {
+  const options = getOptions ();
+  const {bullet} = options.symbols;
 
-  const {bullet, done} = Consts.symbols,
-        {line, todoBox, todoDone} = Consts.regexes;
+  await toggleRules ([
+    [TODO_BOX_RE, '$1$3'],
+    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
+    [LINE_RE, `$1${bullet} [ ] $3`]
+  ]);
 
-  toggleRules (
-    [todoDone, `$1${bullet} [ ] $3`],
-    [todoBox, `$1${bullet} [${done}] $3`],
-    [line, `$1${bullet} [${done}] $3`]
-  );
-
-}
+};
 
 /* EXPORT */
 
-export {toggleTodo, toggleDone};
+export {toggleDone, toggleTodo};
