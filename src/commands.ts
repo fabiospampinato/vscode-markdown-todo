@@ -2,7 +2,7 @@
 /* IMPORT */
 
 import vscode from 'vscode';
-import {LINE_RE, TODO_BOX_RE, TODO_DONE_RE} from './constants';
+import {LINE_RE, LIST_RE, TODO_BOX_RE, TODO_DONE_RE} from './constants';
 import Edits from './edits';
 import {getOptions, getSelectionRange, uniq} from './utils';
 
@@ -71,6 +71,33 @@ const toggleTodo = async (): Promise<void> => {
 
 };
 
+const decrease = async (): Promise<void> => {
+
+  const options = getOptions ();
+  const {bullet} = options.symbols;
+
+  await toggleRules ([
+    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
+    [TODO_BOX_RE, `$1${bullet} $3`],
+    [LIST_RE, `$1$3`]
+  ]);
+
+};
+
+const increase = async (): Promise<void> => {
+
+  const options = getOptions ();
+  const {bullet, done} = options.symbols;
+
+  await toggleRules ([
+    [TODO_DONE_RE, `$1$2$3`],
+    [TODO_BOX_RE, `$1${bullet} [${done}] $3`],
+    [LIST_RE, `$1${bullet} [ ] $3`],
+    [LINE_RE, `$1${bullet} $3`]
+  ]);
+
+};
+
 /* EXPORT */
 
-export {toggleDone, toggleTodo};
+export {toggleDone, toggleTodo, decrease, increase};

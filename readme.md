@@ -16,11 +16,13 @@ ext install fabiospampinato.vscode-markdown-todo
 
 ## Usage
 
-It adds 2 commands to the command palette:
+It adds 4 commands to the command palette:
 
 ```js
 'Markdown Todo: Toggle Todo' // Toggle a todo
 'Markdown Todo: Toggle Done' // Toggle a todo as done
+'Markdown Todo: Decrease' // Decrease the "todo-ness" of a line, going: checked -> uncked -> list -> plain line
+'Markdown Todo: Increase' // Increase the "todo-ness" of a line, going: plain line -> list -> unchecked -> checked
 ```
 
 It adds 3 shortcuts when editing a `Markdown` file:

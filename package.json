@@ -44,6 +44,14 @@
       {
         "command": "markdown.todo.toggleDone",
         "title": "Markdown Todo: Toggle Done"
+      },
+      {
+        "command": "markdown.todo.decrease",
+        "title": "Markdown Todo: Decrease"
+      },
+      {
+        "command": "markdown.todo.increase",
+        "title": "Markdown Todo: Increase"
       }
     ],
     "keybindings": [
@@ -72,6 +80,14 @@
         },
         {
           "command": "markdown.todo.toggleDone",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown.todo.decrease",
+          "when": "editorLangId == markdown"
+        },
+        {
+          "command": "markdown.todo.increase",
           "when": "editorLangId == markdown"
         }
       ]
