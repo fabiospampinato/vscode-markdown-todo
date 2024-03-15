@@ -4,7 +4,7 @@
 import vscode from 'vscode';
 import {LINE_RE, TODO_BOX_RE, TODO_DONE_RE} from './constants';
 import Edits from './edits';
-import {getOptions, uniq} from './utils';
+import {getOptions, getSelectionRange, uniq} from './utils';
 
 /* MAIN */
 
@@ -16,28 +16,28 @@ const toggleRules = async ( rules: [regex: RegExp, replacement: string][] ): Pro
   if ( textEditor.document.languageId !== 'markdown' ) return;
 
   const document = textEditor.document;
-  const linesNr = uniq ( textEditor.selections.map ( selection => selection.active.line ) );
+  const linesNr = uniq ( textEditor.selections.map ( getSelectionRange ).flat ().sort () );
   const lines = linesNr.map ( lineNr => document.lineAt ( lineNr ) );
 
   if ( !lines.length ) return;
 
   const edits: vscode.TextEdit[] = [];
 
-  lines.forEach ( line => {
+  for ( const line of lines ) {
 
-    rules.find ( ([ regex, replacement ]) => {
+    for ( const [regex, replacement] of rules ) {
 
-      if ( !regex.test ( line.text ) ) return false;
+      if ( !regex.test ( line.text ) ) continue;
 
-      const nextText = line.text.replace ( regex, replacement );
+      const lineNextText = line.text.replace ( regex, replacement );
 
-      edits.push ( ...lines.map ( line => Edits.makeDiff ( line.text, nextText, line.lineNumber ) ).flat () );
+      edits.push ( ...Edits.makeDiff ( line.text, lineNextText, line.lineNumber ) );
 
-      return true;
+      break;
 
-    });
+    }
 
-  });
+  }
 
   if ( !edits.length ) return;
 
