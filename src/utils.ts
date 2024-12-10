@@ -10,7 +10,7 @@ import type {Options} from './types';
 const getOptions = (): Options => {
 
   const config = getConfig ( 'markdown.todo' );
-  const symbolBullet = isString ( config?.symbols?.todo ) ? config.symbols.todo : '-';
+  const symbolBullet = isString ( config?.symbols?.bullet ) ? config.symbols.bullet : '-';
   const symbolDone = isString ( config?.symbols?.done ) ? config.symbols.done : 'x';
 
   return { symbols: { bullet: symbolBullet, done: symbolDone } };
