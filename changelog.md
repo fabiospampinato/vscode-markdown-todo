@@ -1,3 +1,6 @@
+### Version 2.0.2
+- Ensuring a pre-existing bullet symbol on the line is preserved when possible, regardless of the preferred one configured
+
 ### Version 2.0.1
 - Ensuring the symbols.bullet setting is respected properly
 
