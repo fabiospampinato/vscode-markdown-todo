@@ -51,9 +51,9 @@ const toggleDone = async (): Promise<void> => {
   const {bullet, done} = options.symbols;
 
   await toggleRules ([
-    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
-    [TODO_BOX_RE, `$1${bullet} [${done}] $3`],
-    [LINE_RE, `$1${bullet} [${done}] $3`]
+    [TODO_DONE_RE, `$1$2 [ ] $4`],
+    [TODO_BOX_RE, `$1$2 [${done}] $4`],
+    [LINE_RE, `$1${bullet} [${done}] $4`]
   ]);
 
 };
@@ -64,22 +64,19 @@ const toggleTodo = async (): Promise<void> => {
   const {bullet} = options.symbols;
 
   await toggleRules ([
-    [TODO_BOX_RE, '$1$3'],
-    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
-    [LINE_RE, `$1${bullet} [ ] $3`]
+    [TODO_BOX_RE, '$1$4'],
+    [TODO_DONE_RE, `$1$2 [ ] $4`],
+    [LINE_RE, `$1${bullet} [ ] $4`]
   ]);
 
 };
 
 const decrease = async (): Promise<void> => {
 
-  const options = getOptions ();
-  const {bullet} = options.symbols;
-
   await toggleRules ([
-    [TODO_DONE_RE, `$1${bullet} [ ] $3`],
-    [TODO_BOX_RE, `$1${bullet} $3`],
-    [LIST_RE, `$1$3`]
+    [TODO_DONE_RE, `$1$2 [ ] $4`],
+    [TODO_BOX_RE, `$1$2 $4`],
+    [LIST_RE, `$1$4`]
   ]);
 
 };
@@ -90,10 +87,10 @@ const increase = async (): Promise<void> => {
   const {bullet, done} = options.symbols;
 
   await toggleRules ([
-    [TODO_DONE_RE, `$1$2$3`],
-    [TODO_BOX_RE, `$1${bullet} [${done}] $3`],
-    [LIST_RE, `$1${bullet} [ ] $3`],
-    [LINE_RE, `$1${bullet} $3`]
+    [TODO_DONE_RE, `$1$2$3$4`],
+    [TODO_BOX_RE, `$1$2 [${done}] $4`],
+    [LIST_RE, `$1${bullet} [ ] $4`],
+    [LINE_RE, `$1${bullet} $4`]
   ]);
 
 };
