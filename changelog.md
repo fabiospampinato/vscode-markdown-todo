@@ -1,3 +1,6 @@
+### Version 2.0.1
+- Ensuring the symbols.bullet setting is respected properly
+
 ### Version 2.0.0
 - Rewitten: more modern code, almost no third-party dependencies, 98% smaller bundle
 - Removed donation popup, thank you for your support!
