@@ -5,7 +5,7 @@
 - Ensuring the symbols.bullet setting is respected properly
 
 ### Version 2.0.0
-- Rewitten: more modern code, almost no third-party dependencies, 98% smaller bundle
+- Rewritten: more modern code, almost no third-party dependencies, 98% smaller bundle
 - Removed donation popup, thank you for your support!
 - Added support for editing multiple todos within a selection
 - New commands: "markdown.todo.decrease" and "markdown.todo.increase"
